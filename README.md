@@ -1,4 +1,4 @@
-# 🏦 CryptoBank System with Fee Management
+# 🏦 ImprovedCryptoBank System with Fee Management
 
 A modular and secure Solidity-based smart contract system for handling multi-user Ether deposits and withdrawals with configurable fees. Designed with best practices for security, access control, and extensibility.
 
@@ -6,15 +6,15 @@ A modular and secure Solidity-based smart contract system for handling multi-use
 
 ## 📁 Structure
 
-- `CryptoBank.sol`: Main contract allowing deposits and withdrawals with per-user balance tracking.
+- `ImprovedCryptoBank.sol`: Main contract allowing deposits and withdrawals with per-user balance tracking.
 - `bankFeesBox.sol`: Separate contract that securely collects withdrawal fees and allows authorized access to them.
-- `IBankFeesBox.sol`: Interface used by `CryptoBank` to interact with `bankFeesBox` in a decoupled and modular way.
+- `IBankFeesBox.sol`: Interface used by `ImprovedCryptoBank` to interact with `bankFeesBox` in a decoupled and modular way.
 
 ---
 
 ## 🔐 Key Features
 
-### ✅ CryptoBank
+### ✅ ImprovedCryptoBank
 - Multi-user Ether deposits.
 - Withdrawals limited to user balance.
 - Max per-user balance (modifiable by admin).
@@ -33,7 +33,7 @@ A modular and secure Solidity-based smart contract system for handling multi-use
 
 ## 🔄 Workflow
 
-1. **User deposits ETH** into `CryptoBank`.
+1. **User deposits ETH** into `ImprovedCryptoBank`.
 2. **User withdraws ETH**, paying a small configurable fee.
 3. **Fee is automatically forwarded** to `bankFeesBox`.
 4. **Authorized managers** can later withdraw the accumulated fees from `bankFeesBox`.
@@ -42,7 +42,7 @@ A modular and secure Solidity-based smart contract system for handling multi-use
 
 ## 🔒 Roles and Access
 
-- **Admin (CryptoBank)**: Can modify max balance and fee percentage.
+- **Admin (ImprovedCryptoBank)**: Can modify max balance and fee percentage.
 - **Owner (bankFeesBox)**: Can manage authorized fee withdrawers (add/remove).
 - **Managers (bankFeesBox)**: Can withdraw ETH from the fee vault.
 
@@ -51,11 +51,11 @@ A modular and secure Solidity-based smart contract system for handling multi-use
 ## ⚙️ Example Deployment
 
 ```solidity
-CryptoBank bank = new CryptoBank(5 ether, msg.sender, address(feeBox));
+ImprovedCryptoBank bank = new ImprovedCryptoBank(5 ether, msg.sender, address(feeBox));
 bankFeesBox feeBox = new bankFeesBox(msg.sender);
 ```
 
-Then authorize the `CryptoBank` as fee sender:
+Then authorize the `ImprovedCryptoBank` as fee sender:
 ```solidity
 feeBox.addManager(address(bank));
 ```
@@ -113,3 +113,4 @@ Used to loosely couple the fee management logic with the bank system.
 ## 🧾 License
 
 This project is licensed under [LGPL-3.0-only](https://spdx.org/licenses/LGPL-3.0-only.html).
+
